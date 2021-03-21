@@ -36,12 +36,13 @@ namespace Calculator {
 		}
 	private: System::Windows::Forms::TextBox^ txtDisplay;
 	private: System::Windows::Forms::Button^ Clear;
+	private: System::Windows::Forms::Button^ Square;
 	protected:
 
 	protected:
 
 
-	private: System::Windows::Forms::Button^ button2;
+
 	private: System::Windows::Forms::Button^ Space;
 
 	private: System::Windows::Forms::Button^ button4;
@@ -86,7 +87,7 @@ namespace Calculator {
 		{
 			this->txtDisplay = (gcnew System::Windows::Forms::TextBox());
 			this->Clear = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->Square = (gcnew System::Windows::Forms::Button());
 			this->Space = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
@@ -134,16 +135,17 @@ namespace Calculator {
 			this->Clear->UseVisualStyleBackColor = false;
 			this->Clear->Click += gcnew System::EventHandler(this, &MyForm::Clear_Click);
 			// 
-			// button2
+			// Square
 			// 
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->Square->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(79, 105);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(60, 60);
-			this->button2->TabIndex = 2;
-			this->button2->Text = L"x^2";
-			this->button2->UseVisualStyleBackColor = true;
+			this->Square->Location = System::Drawing::Point(79, 105);
+			this->Square->Name = L"Square";
+			this->Square->Size = System::Drawing::Size(60, 60);
+			this->Square->TabIndex = 2;
+			this->Square->Text = L"x^2";
+			this->Square->UseVisualStyleBackColor = true;
+			this->Square->Click += gcnew System::EventHandler(this, &MyForm::Square_Click);
 			// 
 			// Space
 			// 
@@ -390,7 +392,7 @@ namespace Calculator {
 			this->Controls->Add(this->button14);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button2);
+			this->Controls->Add(this->Square);
 			this->Controls->Add(this->PlusMinus);
 			this->Controls->Add(this->button13);
 			this->Controls->Add(this->button9);
@@ -487,6 +489,13 @@ private: System::Void PlusMinus_Click(System::Object^ sender, System::EventArgs^
 	{
 		txtDisplay->Text = "-" + txtDisplay->Text;
 	}
+}
+private: System::Void Square_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	firstDigit = Double::Parse(txtDisplay->Text);
+
+	result = firstDigit * firstDigit;
+	txtDisplay->Text = System::Convert::ToString(result);
 }
 };
 }
